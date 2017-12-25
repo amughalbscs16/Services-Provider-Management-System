@@ -3,14 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-Schema::create('ratings', function (Blueprint $table) {
-    $table->integer('people_id');
-    $table->integer('sp_id');
-    $table->foreign('people_id')->references('id')->on('users');
-    $table->foreign('sp_id')->references('id')->on('service_providers');
-});
 class ratings extends Model
 {
+  protected $table = 'ratings';
+  public $timestamps = false;
   protected $fillable = [
      'people_id', 'sp_id'
  ];

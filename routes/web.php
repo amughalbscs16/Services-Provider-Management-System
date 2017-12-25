@@ -13,10 +13,22 @@
 
 
 Auth::routes();
-Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 Route::get('/', 'PeopleProviderController@getHomeView' )->name('getHomeView');
+Route::group(['middleware' => 'auth'] , function(){
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+
+Route::group(['prefix' => 'user'], function(){
+Route::get('/profile', 'PeopleController@getUserProfile')->name('getUserProfile');
+Route::post('/profile', 'PeopleController@postUserProfile')->name('postUserProfile');
+});
+
+Route::group(['prefix' => 'provider'], function(){
+Route::get('/profile', 'ProviderController@getProviderProfile')->name('getProviderProfile');
+Route::post('/profile', 'ProviderController@postProviderProfile')->name('postProviderProfile');
+});
 
 
+});
 
 
 

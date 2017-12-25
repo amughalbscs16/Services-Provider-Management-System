@@ -16,9 +16,9 @@ class People extends Migration
       Schema::create('peoples', function (Blueprint $table) {
           $table->integer('user_id');
           $table->increments('id')->index();
-          $table->string('address');
-          $table->string('city');
-          $table->string('country');
+          $table->string('address')->nullable();
+          $table->string('city')->nullable();
+          $table->string('country')->nullable();
       });
     }
 

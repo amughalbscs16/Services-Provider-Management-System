@@ -11,6 +11,8 @@ class Provider extends Model
    *
    * @var array
    */
+   protected $table = 'providers';
+   public $timestamps = false;
   protected $fillable = [
       'user_id'
   ];

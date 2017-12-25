@@ -26,23 +26,35 @@
                     <h3>Navigation</h3>
                 </div>
                 <ul class="list-unstyled components">
+                  <li class="active">
+                      <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
+                      <ul class="collapse list-unstyled" id="homeSubmenu">
+                          <li><a href="{{ Route('getHomeView') }}">Home 1</a></li>
+                      </ul>
+                  </li>
                 @if (Route::has('login'))
                         @auth
-                                <li class="active">
-                                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
-                                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                                        <li><a href="{{ url('/home') }}">Home 1</a></li>
-                                    </ul>
+                        @if(auth()->user()->role == "user")
+                                <li>
+                                    <a href="{{ Route('getUserProfile') }}">Profile</a>
                                 </li>
+                                <li>
+                                    <a href="#">Services</a>
+                                </li>
+                      @elseif (auth()->user()->role == "provider")
                                 <li>
                                     <a href="#">Profile</a>
                                 </li>
                                 <li>
                                     <a href="#">Services</a>
                                 </li>
+                      @endif
+
                                 <li>
                                     <a href="{{ route('logout')}}">Log Out</a>
+
                                 </li>
+
                         @else
                         <li>
                             <a href="{{ route('login') }}">&nbsp; Login</a>
@@ -86,10 +98,16 @@
                     </div>
                 </nav>
                 <div id="welcomemessage">
-                  <center><h3>{{ $message }} {{ $name }}! </h3></center>
+                  @if(Route::has('login'))
+                  @auth
+                  <center><h3> Welcome {{ auth()->user()->name }}! </h3></center>
+                  @else
+                  <center><h3> Welcome User! </h3></center>
+                  @endauth
+                  @endif
                 </div>
                 <div id="welcomemessage1">
-                  <center><h3>Search for Desired Service in your Area</h3><center>
+                  <center><h3>@yield('bodytitle')</h3><center>
                 </div>
                 @yield('content')
 
