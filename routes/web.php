@@ -13,8 +13,8 @@
 
 
 Auth::routes();
-Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+Route::get('/', 'PeopleProviderController@getHomeView' )->name('getHomeView');
 
 
 

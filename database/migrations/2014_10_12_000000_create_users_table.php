@@ -19,7 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('email');
             $table->string('role');
-            $table->string('CNIC');
+            $table->string('cnic');
+            $table->boolean('indexed')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
