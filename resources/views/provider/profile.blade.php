@@ -7,7 +7,7 @@ User Profile
 {{$message}}
 @endif
 <div class="table-responsive">
-  {{Form::open(['route' => 'postUserProfile'])}}
+  {{Form::open(['route' => 'postProviderProfile'])}}
   {{Form::token()}}
   <center>
   <table class="table" width="50%" align="center">
@@ -33,35 +33,18 @@ User Profile
         </td>
       </tr>
       <tr>
-        <td class="success">{{Form::label('address', 'Address', ['class' => 'awesome'])}}
-        </td>
-        <td>
-          {{Form::text('address', $person->address)}}
-        </td>
-        <td class="success">{{Form::label('city', 'City', ['class' => 'awesome'])}}
-        </td>
-        <td>
-          {{Form::text('city', $person->city)}}
-        </td>
-      </tr>
-      <tr>
-        <td class="success">{{Form::label('country', 'Country', ['class' => 'awesome'])}}
-        </td>
-        <td>
-          {{Form::text('country', $person->country)}}
-        </td>
         <td class="success">{{Form::label('newpassword', 'New Password', ['class' => 'awesome'])}}
         </td>
         <td>
           {{Form::password('newpassword', '')}}
         </td>
-      </tr>
-      <tr>
         <td class="success">{{Form::label('cnic', 'CNIC', ['class' => 'awesome'])}}
         </td>
         <td>
           {{Form::text('cnic', $user->cnic, ['readonly'])}}
         </td>
+      </tr>
+      <tr colspan="4">
         <td class="success">{{Form::label('password', 'Current Password', ['class' => 'awesome'])}}</td>
         <td>{{Form::password('password', ['class' => 'awesome'])}}</td>
       </tr>
