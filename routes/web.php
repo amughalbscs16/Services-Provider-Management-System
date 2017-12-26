@@ -25,6 +25,14 @@ Route::post('/profile', 'PeopleController@postUserProfile')->name('postUserProfi
 Route::group(['prefix' => 'provider'], function(){
 Route::get('/profile', 'ProviderController@getProviderProfile')->name('getProviderProfile');
 Route::post('/profile', 'ProviderController@postProviderProfile')->name('postProviderProfile');
+Route::get('/service', 'ProviderController@getServiceProvider')->name('getServiceProvider');
+Route::post('/service', 'ProviderController@postServiceProvider')->name('postServiceProvider');
+});
+
+Route::group(['prefix' => 'admin'], function(){
+Route::get('/service', 'PeopleProviderController@getServiceAdmin')->name('getServiceAdmin');
+Route::post('/service', 'PeopleProviderController@postServiceAdmin')->name('postServiceAdmin');
+Route::post('/services', 'PeopleProviderController@editServiceAdmin')->name('editServiceAdmin');
 });
 
 

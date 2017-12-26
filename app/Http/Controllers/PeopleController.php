@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use Validator;
-use Hash;
+use Validator, Hash;
 use Illuminate\Http\Request;
 use App\People;
 class PeopleController extends Controller

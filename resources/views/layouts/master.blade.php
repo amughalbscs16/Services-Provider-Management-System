@@ -43,10 +43,14 @@
                                 </li>
                       @elseif (auth()->user()->role == "provider")
                                 <li>
-                                    <a href="#">Profile</a>
+                                    <a href="{{ Route('getProviderProfile') }}">Profile</a>
                                 </li>
                                 <li>
-                                    <a href="#">Services</a>
+                                    <a href="{{ Route('getServiceProvider') }}">Provided Services</a>
+                                </li>
+                      @elseif (auth()->user()->role == "admin")
+                                <li>
+                                    <a href="{{ Route('getServiceAdmin') }}">Manage Services</a>
                                 </li>
                       @endif
 
@@ -109,6 +113,11 @@
                 <div id="welcomemessage1">
                   <center><h3>@yield('bodytitle')</h3><center>
                 </div>
+                  <div id="messages">
+                  @foreach ($errors->all() as $message)
+                    <h4 class="warning">{{ $message }}</h4>
+                  @endforeach
+                  </div>
                 @yield('content')
 
             </div>
@@ -134,7 +143,9 @@
                   $("#welcomemessage").delay(1000).fadeOut(1000);
                   $("#welcomemessage1").hide();
                   $("#welcomemessage1").delay(2000).fadeIn(1000);
+                  $("#messages").delay(2000).fadeOut(1000);
                 });
+                @yield('js')
                 $('#sidebarCollapse').on('click', function () {
                     $('#sidebar, #content').toggleClass('active');
                     $('.collapse.in').toggleClass('in');
