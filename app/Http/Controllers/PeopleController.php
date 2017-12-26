@@ -8,13 +8,17 @@ class PeopleController extends Controller
 {
   function getUserProfile()
   {
+    if(strtoupper(auth()->user()->role)=="USER"){
     $user = auth()->user();
     $person = People::where('user_id','=',$user->id)->first();
     //dd($user);
     return view('user.profile')->with('user',$user)->with('person',$person)->with('message',"Edit User Profile");
+    }
+    else return back();
   }
   function postUserProfile(Request $request)
   {
+    if(strtoupper(auth()->user()->role)=="USER"){
     $user = auth()->user();
     $person = People::where('user_id','=',$user->id)->first();
     $validator = Validator::make($request->all(), [
@@ -45,6 +49,7 @@ class PeopleController extends Controller
           else{ return back()->with('message', "Current Password Does Not Match");
           }
         }
-  }
+  } else return back();
+}
 
 }

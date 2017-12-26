@@ -8,9 +8,13 @@ use Illuminate\Http\Request;
 class ProviderController extends Controller
 {
     function getProviderProfile(){
+      if(strtoupper(auth()->user()->role)=="PROVIDER"){
       return view('provider.profile')->with('user',auth()->user())->with('message', ' ');
+      }
+      else return back()->with('message', ' ');
     }
     function postProviderProfile(Request $request){
+      if(strtoupper(auth()->user()->role)=="PROVIDER"){
       $user = auth()->user();
             $validator = Validator::make($request->all(), [
               'email' => 'required|max:255',
@@ -34,8 +38,12 @@ class ProviderController extends Controller
               return back()->with('message', "Current Password Does Not Match");
             }
           }
+        }
+        else return back()->with('message', ' ');
     }
+
     function getServiceProvider(){
+      if(strtoupper(auth()->user()->role)=="PROVIDER"){
       $services = Service::get()->all();
       $provider = Provider::where('user_id','=',auth()->user()->id)->first();
       $providedservices = ServiceProvider::select('service_providers.service_id','services.name','service_providers.address'
@@ -44,7 +52,10 @@ class ProviderController extends Controller
       return view('provider.service')->with('message', ' ')->with('services', $services)->with('provider',$provider)->with(
         'providedservices', $providedservices);
     }
+    else return back()->with('message', ' ');
+    }
     function postServiceProvider(Request $request){
+      if(strtoupper(auth()->user()->role)=="PROVIDER"){
       $validator = Validator::make($request->all(), [
         'sid' => 'required',
         'pid' => 'required',
@@ -58,18 +69,24 @@ class ProviderController extends Controller
       }
       else{
           if($request->addedit == "add"){
-          $serviceprovider = ServiceProvider::create(
-             ['service_id' => $request->sid,
-             'provider_id' => $request->pid,
-             'address' => $request->address,
-             'city' => $request->city,
-             'country' => $request->country
-          ]);
-          if ($serviceprovider) {
-            return back()->with('message', 'Service Provider Added Successfully');
-          }
-          else {
-            return back()->with('message', 'Service Provider Could Not be Added Try Again!');
+            $tmpserviceprovider = ServiceProvider::where('service_id','=',$request->sid)->get()->first();
+            if ($tmpserviceprovider){
+              return back()->with('message','This Service is Already Added You can only Edit');
+            }
+            else{
+            $serviceprovider = ServiceProvider::create(
+               ['service_id' => $request->sid,
+               'provider_id' => $request->pid,
+               'address' => $request->address,
+               'city' => $request->city,
+               'country' => $request->country
+            ]);
+            if ($serviceprovider) {
+              return back()->with('message', 'Service Provider Added Successfully');
+            }
+            else {
+              return back()->with('message', 'Service Provider Could Not be Added Try Again!');
+            }
           }
         }
         else if($request->addedit == "edit"){
@@ -92,5 +109,5 @@ class ProviderController extends Controller
         }
       }
     }
-
+  }
 }
