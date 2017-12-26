@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class service_provider extends Model
+class ServiceProvider extends Model
 {
   protected $table = 'service_providers';
   public $timestamps = false;

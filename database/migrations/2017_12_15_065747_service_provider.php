@@ -22,7 +22,6 @@ class ServiceProvider extends Migration
              $table->string('address');
              $table->string('city');
              $table->string('country');
-             $table->unique('provider_id','service_id');
          });
      }
 

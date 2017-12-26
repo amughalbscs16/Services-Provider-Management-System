@@ -3,9 +3,7 @@
 User Profile
 @endsection
 @section('content')
-@if($message)
-{{$message}}
-@endif
+
 <div class="table-responsive">
   {{Form::open(['route' => 'postProviderProfile'])}}
   {{Form::token()}}
@@ -46,13 +44,14 @@ User Profile
       </tr>
       <tr colspan="4">
         <td class="success">{{Form::label('password', 'Current Password', ['class' => 'awesome'])}}</td>
-        <td>{{Form::password('password', ['class' => 'awesome'])}}</td>
+        <td>{{Form::password('password', '', ['class' => 'awesome'])}}</td>
       </tr>
       <tr>
 
         <td align="center" class="info" colspan="4">{{Form::submit('Save Profile')}}</td>
       </tr>
     </tbody>
+    {{Form::close()}}
   </table>
 </div>
 </center>
