@@ -66,23 +66,22 @@ Search for Desired Service in Your Area
     @foreach($providedservices as $pservice)
     <tr>
       <td>
-        <a href="{{route('searchServiceProvider',
-        ['sid' => $pservice->service_id, 'pid' => $pservice->provider_id , 'location' => $location])}}">{{$pservice->name}}</a>
+        <a href="{{route('searchServiceProvider', ['service_id' => $pservice->service_id, 'provider_id' => $pservice->provider_id, 'location' => $location.' '.$pservice->city.' '.$pservice->country])}}">{{$pservice->name}}</a>
       </td>
       <td>
-        {{$pservice->specification}}
+        <a href="{{route('searchServiceProvider', ['service_id' => $pservice->service_id, 'provider_id' => $pservice->provider_id, 'location' => $location.' '.$pservice->city.' '.$pservice->country])}}">{{$pservice->specification}}</a>
       </td>
       <td>
-        {{$pservice->address}}
+        <a href="{{route('searchServiceProvider', ['service_id' => $pservice->service_id, 'provider_id' => $pservice->provider_id, 'location' => $location.' '.$pservice->city.' '.$pservice->country])}}">{{$pservice->address}}</a>
       </td>
       <td>
-        {{$pservice->city}}
+        <a href="{{route('searchServiceProvider', ['service_id' => $pservice->service_id, 'provider_id' => $pservice->provider_id, 'location' => $location.' '.$pservice->city.' '.$pservice->country])}}">{{$pservice->city}}</a>
       </td>
       <td>
-        {{$pservice->country}}
+        <a href="{{route('searchServiceProvider', ['service_id' => $pservice->service_id, 'provider_id' => $pservice->provider_id, 'location' => $location.' '.$pservice->city.' '.$pservice->country])}}">{{$pservice->country}}</a>
       </td>
       <td>
-        {{$pservice->description}}
+        <a href="{{route('searchServiceProvider', ['service_id' => $pservice->service_id, 'provider_id' => $pservice->provider_id, 'location' => $location.' '.$pservice->city.' '.$pservice->country])}}">{{$pservice->description}}</a>
       </td>
     </tr></a>
     @endforeach

@@ -16,7 +16,7 @@ Auth::routes();
 Route::get('/', 'PeopleProviderController@getHomeView' )->name('getHomeView');
 Route::post('/', 'PeopleProviderController@postUserCountry')->name('postUserCountry');
 Route::post('/country', 'PeopleProviderController@postServicesData')->name('postServicesData');
-Route::get('getserviceprovider/{$sid}/{$pid}/{$location}', 'PeopleProviderController@searchServiceProvider')->name('searchServiceProvider');
+Route::get('/country/{service_id}/{provider_id}/{location}', 'PeopleProviderController@searchServiceProvider')->name('searchServiceProvider');
 Route::group(['middleware' => 'auth'] , function(){
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
