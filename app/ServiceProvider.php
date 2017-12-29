@@ -9,7 +9,7 @@ class ServiceProvider extends Model
   protected $table = 'service_providers';
   public $timestamps = false;
   protected $fillable = [
-     'provider_id', 'service_id','address','city','country'
+     'provider_id', 'service_id','address','city','country','description'
  ];
 
  /**

@@ -14,6 +14,9 @@
 
 Auth::routes();
 Route::get('/', 'PeopleProviderController@getHomeView' )->name('getHomeView');
+Route::post('/', 'PeopleProviderController@postUserCountry')->name('postUserCountry');
+Route::post('/country', 'PeopleProviderController@postServicesData')->name('postServicesData');
+Route::get('getserviceprovider/{$sid}/{$pid}/{$location}', 'PeopleProviderController@searchServiceProvider')->name('searchServiceProvider');
 Route::group(['middleware' => 'auth'] , function(){
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
@@ -37,42 +40,3 @@ Route::post('/services', 'PeopleProviderController@editServiceAdmin')->name('edi
 
 
 });
-
-
-
-
-
-/*
-
-
-
-
-
-
-Route::group(['prefix' => 'judge',  'middleware' => 'auth'], function()
-{
-    Route::get('dashboard', function() {
-    	return view('welcome');
-    } );
-
-	Route::get('/', function () {
-    	return view('welcome');
-	});
-
-});
-
-
-Route::group(['prefix' => 'admin',  'middleware' => 'auth'], function()
-{
-    Route::get('dashboard', function() {
-    	return view('welcome');
-    } );
-});
-
-
-Route::group(['prefix' => 'judge',  'middleware' => 'auth'], function()
-{
-    Route::get('dashboard', function() {
-    	return view('welcome');
-    } );
-});*/
