@@ -30,6 +30,12 @@ class PeopleController extends Controller
             'city' => 'max:20',
             'country' => 'max:20',
         ]);
+
+    //image getting code
+     /*while( $row = $result->fetch_assoc() ){ 
+        echo "<div class='userlist'><span>".$row['user_id']."</span><br />";
+        echo "<img src='".$row['image']."'></div>";
+    }*/
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput()->with('message',"Try Again");
         }

@@ -14,6 +14,7 @@
 
 Auth::routes();
 Route::get('/', 'PeopleProviderController@getHomeView' )->name('getHomeView');
+Route::get('about', 'PeopleProviderController@aboutPage')->name('aboutPage');
 Route::group(['middleware' => 'auth'] , function(){
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
@@ -32,7 +33,7 @@ Route::post('/service', 'ProviderController@postServiceProvider')->name('postSer
 Route::group(['prefix' => 'admin'], function(){
 Route::get('/service', 'PeopleProviderController@getServiceAdmin')->name('getServiceAdmin');
 Route::post('/service', 'PeopleProviderController@postServiceAdmin')->name('postServiceAdmin');
-Route::post('/services', 'PeopleProviderController@editServiceAdmin')->name('editServiceAdmin');
+Route::post('/service', 'PeopleProviderController@editServiceAdmin')->name('editServiceAdmin');
 });
 
 
@@ -43,12 +44,6 @@ Route::post('/services', 'PeopleProviderController@editServiceAdmin')->name('edi
 
 
 /*
-
-
-
-
-
-
 Route::group(['prefix' => 'judge',  'middleware' => 'auth'], function()
 {
     Route::get('dashboard', function() {
