@@ -47,7 +47,7 @@ class ProviderController extends Controller
       $services = Service::get()->all();
       $provider = Provider::where('user_id','=',auth()->user()->id)->first();
       $providedservices = ServiceProvider::select('service_providers.service_id','services.name','service_providers.address'
-      ,'service_providers.city','service_providers.country','services.specification')->join('services','service_providers.service_id','=','services.id')->
+      ,'service_providers.city','service_providers.country','services.specification','service_providers.description')->join('services','service_providers.service_id','=','services.id')->
       where('provider_id','=', $provider->id)->get();
       return view('provider.service')->with('message', ' ')->with('services', $services)->with('provider',$provider)->with(
         'providedservices', $providedservices);
@@ -63,6 +63,7 @@ class ProviderController extends Controller
         'country' => 'required|max:25',
         'city' => 'required|max:25',
         'addedit' => 'required',
+        'description' => 'required|max:255'
       ]);
       if ($validator->fails()) {
           return back()->withErrors($validator)->withInput()->with('message',"Try Again");
@@ -79,7 +80,8 @@ class ProviderController extends Controller
                'provider_id' => $request->pid,
                'address' => $request->address,
                'city' => $request->city,
-               'country' => $request->country
+               'country' => $request->country,
+               'description' => $request->description,
             ]);
             if ($serviceprovider) {
               return back()->with('message', 'Service Provider Added Successfully');
@@ -97,6 +99,7 @@ class ProviderController extends Controller
             $serviceprovider->address = $request->address;
             $serviceprovider->city = $request->city;
             $serviceprovider->country = $request->country;
+            $serviceprovider->description = $request->description;
             $serviceprovider->save();
             return back()->with('message', 'Successfully Edited Service with ID: '.$serviceprovider->service_id);
           }

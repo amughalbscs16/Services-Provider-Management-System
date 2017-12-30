@@ -13,8 +13,8 @@ Manage Services
   <table class="table" width="50%" align="center">
     <thead>
       <tr>
-        <th>Fields</th>
-        <th>Input</th>
+        <th colspan="2">Fields</th>
+        <th colspan="2">Input</th>
       </tr>
     </thead>
 
@@ -56,6 +56,13 @@ Manage Services
         {{Form::radio('addedit', 'edit')}}
       </td>
       </tr>
+      <tr>
+        <td class="success" colspan="1">{{Form::label('description', 'Description', ['class' => 'awesome'])}}
+        </td>
+        <td colspan="3">
+          {{Form::textarea('description', '')}}
+        </td>
+      </tr>
       <tr colspan="4">
         <td align="center" class="info" colspan="4">{{Form::submit('Add Service Provider')}}</td>
       </tr>
@@ -73,6 +80,7 @@ Manage Services
           <th>Address</th>
           <th>City</th>
           <th>Country</th>
+          <th>Description</th>
         </tr>
       </thead>
     @foreach($providedservices as $pservice)
@@ -93,6 +101,9 @@ Manage Services
       </td>
       <td>
         {{$pservice->country}}
+      </td>
+      <td>
+        {{$pservice->description}}
       </td>
     </tr>
     @endforeach

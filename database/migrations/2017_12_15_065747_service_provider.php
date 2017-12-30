@@ -22,6 +22,7 @@ class ServiceProvider extends Migration
              $table->string('address');
              $table->string('city');
              $table->string('country');
+             $table->string('description');
          });
      }
 
