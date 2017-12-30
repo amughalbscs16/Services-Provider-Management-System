@@ -14,13 +14,12 @@
 
 Auth::routes();
 Route::get('/', 'PeopleProviderController@getHomeView' )->name('getHomeView');
-<<<<<<< HEAD
+
 Route::get('about', 'PeopleProviderController@aboutPage')->name('aboutPage');
-=======
+
 Route::post('/', 'PeopleProviderController@postUserCountry')->name('postUserCountry');
 Route::post('/country', 'PeopleProviderController@postServicesData')->name('postServicesData');
 Route::get('/country/{service_id}/{provider_id}/{location}', 'PeopleProviderController@searchServiceProvider')->name('searchServiceProvider');
->>>>>>> 91991b7c8e101f32f0e577bb8acd32d873b0c90d
 Route::group(['middleware' => 'auth'] , function(){
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
@@ -44,7 +43,7 @@ Route::post('/service', 'PeopleProviderController@editServiceAdmin')->name('edit
 
 
 });
-<<<<<<< HEAD
+
 
 
 
@@ -78,5 +77,5 @@ Route::group(['prefix' => 'judge',  'middleware' => 'auth'], function()
     	return view('welcome');
     } );
 });*/
-=======
->>>>>>> 91991b7c8e101f32f0e577bb8acd32d873b0c90d
+
+
