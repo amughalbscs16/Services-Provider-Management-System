@@ -61,6 +61,8 @@ Search for Desired Service in Your Area
           <th>City</th>
           <th>Country</th>
           <th>Description</th>
+          <th>Ratings/5</th>
+          <th>Rating Count</th>
         </tr>
       </thead>
     @foreach($providedservices as $pservice)
@@ -82,6 +84,12 @@ Search for Desired Service in Your Area
       </td>
       <td>
         <a href="{{route('searchServiceProvider', ['service_id' => $pservice->service_id, 'provider_id' => $pservice->provider_id, 'location' => $location.' '.$pservice->city.' '.$pservice->country])}}">{{$pservice->description}}</a>
+      </td>
+      <td>
+        <a href="{{route('searchServiceProvider', ['service_id' => $pservice->service_id, 'provider_id' => $pservice->provider_id, 'location' => $location.' '.$pservice->city.' '.$pservice->country])}}">{{$pservice->rating}}</a>
+      </td>
+      <td>
+      <a href="{{route('searchServiceProvider', ['service_id' => $pservice->service_id, 'provider_id' => $pservice->provider_id, 'location' => $location.' '.$pservice->city.' '.$pservice->country])}}">{{$pservice->rating_count}}</a>
       </td>
     </tr></a>
     @endforeach

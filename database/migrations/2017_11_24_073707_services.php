@@ -17,6 +17,7 @@ class Services extends Migration
              $table->increments('id')->index();
              $table->string('specification');
              $table->string('name');
+             $table->integer('count')->default(0);
          });
      }
 

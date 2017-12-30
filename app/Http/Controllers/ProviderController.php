@@ -71,6 +71,8 @@ class ProviderController extends Controller
       else{
           if($request->addedit == "add"){
             $tmpserviceprovider = ServiceProvider::where('service_id','=',$request->sid)->get()->first();
+
+
             if ($tmpserviceprovider){
               return back()->with('message','This Service is Already Added You can only Edit');
             }
@@ -83,7 +85,11 @@ class ProviderController extends Controller
                'country' => $request->country,
                'description' => $request->description,
             ]);
+            //Increment Service count
             if ($serviceprovider) {
+              $service = Service::find($serviceprovider->service_id)->get()->first();
+              $service->count = $service->count + 1;
+              $service->save();
               return back()->with('message', 'Service Provider Added Successfully');
             }
             else {

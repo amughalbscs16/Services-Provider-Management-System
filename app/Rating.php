@@ -3,12 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-class ratings extends Model
+class Rating extends Model
 {
   protected $table = 'ratings';
   public $timestamps = false;
   protected $fillable = [
-     'people_id', 'sp_id'
+   'people_id', 'sp_id','rating'
  ];
 
  /**
@@ -16,9 +16,4 @@ class ratings extends Model
   *
   * @var array
   */
- protected $hidden = [
- ];
-
- protected $guarded = [
- ];
 }

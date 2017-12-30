@@ -14,10 +14,12 @@ class Ratings extends Migration
      public function up()
      {
          Schema::create('ratings', function (Blueprint $table) {
+             $table->increments('id')->index();
              $table->integer('people_id');
              $table->integer('sp_id');
              $table->foreign('people_id')->references('id')->on('users');
              $table->foreign('sp_id')->references('id')->on('service_providers');
+             $table->integer('rating')->default(0);
          });
      }
 

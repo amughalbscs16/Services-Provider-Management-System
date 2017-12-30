@@ -9,7 +9,7 @@ class Service extends Model
   protected $table = 'services';
   public $timestamps = false;
      protected $fillable = [
-        'specification', 'name'
+        'specification', 'name','count',
     ];
 
     /**

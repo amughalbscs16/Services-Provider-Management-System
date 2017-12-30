@@ -11,6 +11,15 @@ Welcome to Service Information Page
         <th>Provider Location</th>
         <th>Your Location</th>
         <th>Description</th>
+        <th>Ratings/5</th>
+        <th>Rating Count</th>
+        @auth
+        @if(auth()->user()->role=="user")
+        <th>
+        ☆&nbsp;☆&nbsp;☆&nbsp;☆&nbsp;☆
+        </th>
+        @endif
+        @endauth
       </tr>
     </thead>
   <tr>
@@ -25,27 +34,39 @@ Welcome to Service Information Page
     <td>
       {{$serviceprovider->description}}
     </td>
+    <td>
+      {{$serviceprovider->rating}}
+    </td>
+    @auth
+    @if(auth()->user()->role=="user")
+    <td>
+    {{Form::open(['route' => 'postServiceRatings'])}}
+    {{Form::token()}}
+    {{Form::hidden('sp_id',$serviceprovider->id)}}
+    {{Form::hidden('user_id',auth()->user()->id)}}
+    {{Form::radio('rating','1')}}
+    {{Form::radio('rating','2')}}
+    {{Form::radio('rating','3')}}
+    {{Form::radio('rating','4')}}
+    {{Form::radio('rating','5')}}
+    {{Form::submit('Rate')}}
+    {{Form::close()}}
+    </td>
+    <td>{{$serviceprovider->rating_count}}</td>
+    @endif
+    @endauth
 </tr>
-<tr><td colspan="4">
-  <div id="map"></div>
-  <script>
-      function initMap() {
-        var uluru = {lat: -25.363, lng: 131.044};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
-      }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMb5TqwQsy_58xGWpj1iO1XE4utDeB67w&callback=initMap">
-    </script>
+<tr>
+  @auth
+  @if(auth()->user()->role=="user")
+  <td colspan="7">
+  @else
+  <td colspan="6">
+  @endif
+  @endauth
+
     <iframe
-  width="900"
+  width="1000"
   height="600"
   frameborder="0" style="border:0"
   src="{{"https://www.google.com/maps/embed/v1/directions

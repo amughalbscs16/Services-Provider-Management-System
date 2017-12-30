@@ -23,6 +23,8 @@ class ServiceProvider extends Migration
              $table->string('city');
              $table->string('country');
              $table->string('description');
+             $table->decimal('rating',3,2)->default(0.00);
+             $table->integer('rating_count')->default(0);
          });
      }
 

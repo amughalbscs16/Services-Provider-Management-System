@@ -51,5 +51,40 @@ class PeopleController extends Controller
         }
   } else return back();
 }
-
+  function postServiceRatings(Request $request)
+  {
+    $validator = Validator::make($request->all(), [
+            'rating' => 'required|max:255',
+            'sp_id' => 'required',
+            'user_id' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput()->with('message',"Try Again");
+        }
+        else {
+          $people = People::where('user_id','=',$request->user_id)->get()->first();
+          $rating = \App\Rating::where('sp_id','=',$request->sp_id)->where('people_id','=',$people->id)->get()->first();
+          $serviceprovider = \App\ServiceProvider::find($request->sp_id)->get()->first();
+          if($rating)
+          {
+            $serviceprovider->rating = ((($serviceprovider->rating*$serviceprovider
+            ->rating_count) - $rating->rating + $request->rating)/$serviceprovider->rating_count); //Subtract Old Rating
+            $serviceprovider->save();
+            $rating->rating = $request->rating;
+            $rating->save();
+            return back()->with('message', 'Rating Successfully Edited');
+          }
+          else {
+            $rating = \App\Rating::create(
+              ['people_id' => $people->id,
+              'sp_id' => $request->sp_id,
+              'rating' => $request->rating,
+            ]);
+            $serviceprovider->rating_count += 1;
+            $serviceprovider->rating = ((($serviceprovider->rating)*($serviceprovider->rating_count - 1)+$rating->rating)/$serviceprovider->rating_count);
+            $serviceprovider->save();
+            return back()->with('message', 'Rating Successfully Created');
+          }
+        }
+  }
 }

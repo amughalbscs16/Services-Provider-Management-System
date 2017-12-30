@@ -78,13 +78,26 @@ class PeopleProviderController extends Controller
   }
   function searchServiceProvider($service_id,$provider_id,$location)
   {
+    //from provider extract user information.
+    //from service id and provider id extract the data for servive and servie provider.
+    //show maps and distance.
     $user_id = \App\Provider::find($provider_id)->get()->first()->user_id;
     $provider_user = \App\User::find($user_id)->get()->first();
     $service_provider = \App\ServiceProvider::join('services','services.id','=','service_providers.service_id')
     ->where('service_providers.provider_id','=',$provider_id)->where('service_providers.service_id','=',$service_id)->get()->first();
-    //from provider extract user information.
-    //from service id and provider id extract the data for servive and servie provider.
-    //show maps and distance.
     return view('showservice')->with('provider',$provider_user)->with('serviceprovider',$service_provider)->with('location',$location)->with('message', "Service Provider Information");
+  }
+  //Admin
+  function getServiceAnalysis()
+  {
+    if(strtoupper(auth()->user()->role)=="ADMIN"){
+    $services = Service::get()->all();
+    return view('admin.serviceanalysis')->with('message', 'Service Analysis')->with('services',$services);
+  }
+  else return back()->with('message', 'You are not Authenticated for this Page');
+  }
+  function getAboutUs()
+  {
+    return view('about.aboutus')->with('message',' ');
   }
 }
