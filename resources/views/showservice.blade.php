@@ -52,9 +52,9 @@ Welcome to Service Information Page
     {{Form::submit('Rate')}}
     {{Form::close()}}
     </td>
-    <td>{{$serviceprovider->rating_count}}</td>
     @endif
     @endauth
+    <td>{{$serviceprovider->rating_count}}</td>
 </tr>
 <tr>
   @auth
