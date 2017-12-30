@@ -30,6 +30,7 @@ class PeopleController extends Controller
             'city' => 'max:20',
             'country' => 'max:20',
         ]);
+
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput()->with('message',"Try Again");
         }

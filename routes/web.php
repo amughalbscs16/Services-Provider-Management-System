@@ -14,6 +14,9 @@
 
 Auth::routes();
 Route::get('/', 'PeopleProviderController@getHomeView' )->name('getHomeView');
+
+Route::get('about', 'PeopleProviderController@aboutPage')->name('aboutPage');
+
 Route::post('/', 'PeopleProviderController@postUserCountry')->name('postUserCountry');
 Route::post('/country', 'PeopleProviderController@postServicesData')->name('postServicesData');
 Route::get('/country/{service_id}/{provider_id}/{location}', 'PeopleProviderController@searchServiceProvider')->name('searchServiceProvider');
@@ -38,8 +41,10 @@ Route::get('/service', 'PeopleProviderController@getServiceAdmin')->name('getSer
 Route::post('/service', 'PeopleProviderController@postServiceAdmin')->name('postServiceAdmin');
 Route::post('/services', 'PeopleProviderController@editServiceAdmin')->name('editServiceAdmin');
 Route::get('/serviceanalysis', 'PeopleProviderController@getServiceAnalysis')->name('getServiceAnalysis');
+
 });
 
 
 });
+
 Route::get('aboutus','PeopleProviderController@getAboutUs')->name('getAboutUs');
