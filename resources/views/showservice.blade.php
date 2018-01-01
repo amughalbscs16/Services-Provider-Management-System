@@ -12,9 +12,9 @@ Welcome to Service Information Page
         <th>Your Location</th>
         <th>Description</th>
         <th>Ratings/5</th>
-        <th>Rating Count</th>
         @auth
         @if(auth()->user()->role=="user")
+        <th>Rating Count</th>
         <th>
         ☆&nbsp;☆&nbsp;☆&nbsp;☆&nbsp;☆
         </th>
@@ -42,7 +42,8 @@ Welcome to Service Information Page
     <td>
     {{Form::open(['route' => 'postServiceRatings'])}}
     {{Form::token()}}
-    {{Form::hidden('sp_id',$serviceprovider->id)}}
+    {{Form::hidden('service_id',$serviceprovider->service_id)}}
+    {{Form::hidden('provider_id',$serviceprovider->provider_id)}}
     {{Form::hidden('user_id',auth()->user()->id)}}
     {{Form::radio('rating','1')}}
     {{Form::radio('rating','2')}}

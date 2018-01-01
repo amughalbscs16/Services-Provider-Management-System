@@ -42,17 +42,25 @@ class PeopleProviderController extends Controller
   }
 
   function getServiceAdmin(){
+    if (strtoupper(auth()->user()->role)=="ADMIN"){
     $services = Service::get()->all();
     return view('admin.addservice')->with('message', 'Add Services')->with('services', $services);
+    }
+    else return back()->with('message', "You are not allowed to this route");
+
   }
   function postServiceAdmin(Request $request){
+    if (strtoupper(auth()->user()->role)=="ADMIN"){
     $service = new Service;
     $service->specification = $request->specification;
     $service->name = $request->name;
     $service->save();
     return back()->with('message', 'Service Successfully Added to List');
+    }
+    else return back()->with('message', "You are not allowed to this route");
   }
   function editServiceAdmin(Request $request){
+    if (strtoupper(auth()->user()->role)=="ADMIN"){
     $validator = Validator::make($request->all(), [
             'id' => 'required',
             'name' => 'required|max:25',
@@ -75,6 +83,8 @@ class PeopleProviderController extends Controller
              return back()->with('message', 'Service with Id Not Removed to List');
           }
         }
+      }
+      else return back()->with('message', "You are not allowed to this route");
   }
   function searchServiceProvider($service_id,$provider_id,$location)
   {

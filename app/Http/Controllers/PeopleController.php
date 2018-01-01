@@ -56,7 +56,8 @@ class PeopleController extends Controller
   {
     $validator = Validator::make($request->all(), [
             'rating' => 'required|max:255',
-            'sp_id' => 'required',
+            'service_id' => 'required',
+            'provider_id' => 'required',
             'user_id' => 'required',
         ]);
         if ($validator->fails()) {
@@ -64,8 +65,8 @@ class PeopleController extends Controller
         }
         else {
           $people = People::where('user_id','=',$request->user_id)->get()->first();
-          $rating = \App\Rating::where('sp_id','=',$request->sp_id)->where('people_id','=',$people->id)->get()->first();
-          $serviceprovider = \App\ServiceProvider::find($request->sp_id)->get()->first();
+          $serviceprovider = \App\ServiceProvider::where('service_id','=',$request->service_id)->where('provider_id','=',$request->provider_id)->get()->first();
+          $rating = \App\Rating::where('sp_id','=',$serviceprovider->id)->where('people_id','=',$people->id)->get()->first();
           if($rating)
           {
             $serviceprovider->rating = ((($serviceprovider->rating*$serviceprovider
@@ -76,9 +77,10 @@ class PeopleController extends Controller
             return back()->with('message', 'Rating Successfully Edited');
           }
           else {
+
             $rating = \App\Rating::create(
               ['people_id' => $people->id,
-              'sp_id' => $request->sp_id,
+              'sp_id' => $serviceprovider->id,
               'rating' => $request->rating,
             ]);
             $serviceprovider->rating_count += 1;
