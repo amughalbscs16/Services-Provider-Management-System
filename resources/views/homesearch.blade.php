@@ -20,7 +20,7 @@ Search for Desired Service in Your Area
 <table class="table" width="50%" align="center">
   <tbody>
     <tr>
-      <td class="success">{{Form::label('country', 'Your Location', ['class' => 'awesome'])}}
+      <td class="success">{{Form::label('country', 'Country', ['class' => 'awesome'])}}
       </td>
       <td>
         {{Form::text('country',$selectedcountry,['readonly'])}}

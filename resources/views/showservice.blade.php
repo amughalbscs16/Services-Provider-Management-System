@@ -14,12 +14,12 @@ Welcome to Service Information Page
         <th>Ratings/5</th>
         @auth
         @if(auth()->user()->role=="user")
-        <th>Rating Count</th>
         <th>
         ☆&nbsp;☆&nbsp;☆&nbsp;☆&nbsp;☆
         </th>
         @endif
         @endauth
+        <th>Rating Count</th>
       </tr>
     </thead>
   <tr>

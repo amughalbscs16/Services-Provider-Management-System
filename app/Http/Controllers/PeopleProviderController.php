@@ -23,7 +23,7 @@ class PeopleProviderController extends Controller
     $services = ServiceProvider::select('services.name')->
     join('services','service_providers.service_id','=','services.id')->where('country','=',$request->country)->
     groupBy('services.name')->pluck('services.name','services.name');
-    $cities = ServiceProvider::groupBy('city')->pluck('city','city');
+    $cities = ServiceProvider::where('country','=',$request->country)->groupBy('city')->pluck('city','city');
     return view('homesearch')->with('message',' ')->with('countries',$countries)->with('services',$services)->
     with('cities',$cities)->with('showservices',null)->with('selectedcountry',$request->country);
   }
@@ -34,7 +34,7 @@ class PeopleProviderController extends Controller
     $services = ServiceProvider::select('services.name')->
     join('services','service_providers.service_id','=','services.id')->where('country','=',$request->country)->
     groupBy('services.name')->pluck('services.name','services.name');
-    $cities = ServiceProvider::groupBy('city')->pluck('city','city');
+    $cities = ServiceProvider::where('country','=',$request->country)->groupBy('city')->pluck('city','city');
     $providedservices = ServiceProvider::select()->
     join('services','service_providers.service_id','=','services.id')->where('service_providers.city','=',$request->city)->where('services.name','=',$request->name)->get()->all();
     return view('homesearch')->with('message',' ')->with('countries',$countries)->with('services',$services)->

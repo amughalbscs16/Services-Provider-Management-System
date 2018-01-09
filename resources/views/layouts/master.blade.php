@@ -24,11 +24,12 @@
             <!-- Sidebar Holder -->
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <h3>App Nav</h3>
+                    <h3>Sahulat</h3>
+                    <h5>Your Own Services Finder</h5>
                 </div>
                 <ul class="list-unstyled components">
                   <li>
-                      <a href="{{ Route('getHomeView') }}" data-toggle="collapse">&nbsp; Home</a>
+                      <a href="{{ Route('getHomeView') }}">&nbsp; Home</a>
                   </li>
                 @if (Route::has('login'))
                         @auth
@@ -37,7 +38,7 @@
                                     <a href="{{ Route('getUserProfile') }}">&nbsp; Profile</a>
                                 </li>
                                 <li>
-                                    <a href="#">&nbsp; Services</a>
+                                    <a href="{{ Route('getHomeView') }}">&nbsp; Services</a>
                                 </li>
                       @elseif (auth()->user()->role == "provider")
                                 <li>
@@ -71,7 +72,7 @@
                       </ul>
                       <ul class="list-unstyled CTAs">
                           <li><a href="{{Route('getAboutUs')}}" class="download">About Us</a></li>
-                          <li><a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">How to Use</a></li>
+                          <li><a href="#" class="article">How to Use</a></li>
                       </ul>
 
 
