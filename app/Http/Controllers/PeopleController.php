@@ -21,6 +21,7 @@ class PeopleController extends Controller
   {
   /* 
   param $request: Information of user profile submitted in JSON.
+  function: Performs the updation and validation of user profile information.
   */ 
     if(strtoupper(auth()->user()->role)=="USER"){
     $user = auth()->user();
