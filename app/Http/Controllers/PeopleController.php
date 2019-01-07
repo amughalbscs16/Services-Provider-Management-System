@@ -8,6 +8,7 @@ class PeopleController extends Controller
 {
   function getUserProfile()
   {
+  
     if(strtoupper(auth()->user()->role)=="USER"){
     $user = auth()->user();
     $person = People::where('user_id','=',$user->id)->first();
@@ -18,6 +19,9 @@ class PeopleController extends Controller
   }
   function postUserProfile(Request $request)
   {
+  /* 
+  param $request: Information of user profile submitted in JSON.
+  */ 
     if(strtoupper(auth()->user()->role)=="USER"){
     $user = auth()->user();
     $person = People::where('user_id','=',$user->id)->first();
