@@ -59,6 +59,12 @@ class PeopleController extends Controller
 }
   function postServiceRatings(Request $request)
   {
+    /*
+    param $request: Contains the rating value, service id, provider id
+                    and user id for a particular service provider.
+    function: It recieves verifies, and accumulates the rating of a 
+              particular service provider.
+    */
     $validator = Validator::make($request->all(), [
             'rating' => 'required|max:255',
             'service_id' => 'required',
