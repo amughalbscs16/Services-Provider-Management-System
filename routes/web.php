@@ -17,7 +17,9 @@ Auth::routes();
 Route::get('/about','PeopleProviderController@getAboutUs')->name('getAboutUs');
 //Route for Home View Page
 Route::get('/', 'PeopleProviderController@getHomeView' )->name('getHomeView');
+//Route for Add a Country
 Route::post('/', 'PeopleProviderController@postUserCountry')->name('postUserCountry');
+//Route for add Services
 Route::post('/country', 'PeopleProviderController@postServicesData')->name('postServicesData');
 Route::get('/country/{service_id}/{provider_id}/{location}', 'PeopleProviderController@searchServiceProvider')->name('searchServiceProvider');
 Route::group(['middleware' => 'auth'] , function(){
