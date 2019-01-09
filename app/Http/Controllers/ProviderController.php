@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 class ProviderController extends Controller
 {
     function getProviderProfile(){
+      /*
+      function: Returns the profile page of provider.
+      */
       if(strtoupper(auth()->user()->role)=="PROVIDER"){
       return view('provider.profile')->with('user',auth()->user())->with('message', ' ');
       }
