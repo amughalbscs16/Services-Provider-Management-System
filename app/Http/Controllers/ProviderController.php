@@ -46,6 +46,9 @@ class ProviderController extends Controller
     }
 
     function getServiceProvider(){
+      /*
+      function: Get the service providers list page.
+      */
       if(strtoupper(auth()->user()->role)=="PROVIDER"){
       $services = Service::get()->all();
       $provider = Provider::where('user_id','=',auth()->user()->id)->first();
