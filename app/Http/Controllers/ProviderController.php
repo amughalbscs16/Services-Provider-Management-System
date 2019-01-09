@@ -61,6 +61,10 @@ class ProviderController extends Controller
     else return back()->with('message', ' ');
     }
     function postServiceProvider(Request $request){
+      /*
+      param $request: containts the request from Form containing the sid,pid,address and related information of service provider.
+      function: Takes a service provider and adds it into the database.
+      */
       if(strtoupper(auth()->user()->role)=="PROVIDER"){
       $validator = Validator::make($request->all(), [
         'sid' => 'required',
