@@ -13,8 +13,9 @@
 
 
 Auth::routes();
+//Route for About Us Page
 Route::get('/about','PeopleProviderController@getAboutUs')->name('getAboutUs');
-
+//Route for Home View Page
 Route::get('/', 'PeopleProviderController@getHomeView' )->name('getHomeView');
 Route::post('/', 'PeopleProviderController@postUserCountry')->name('postUserCountry');
 Route::post('/country', 'PeopleProviderController@postServicesData')->name('postServicesData');
