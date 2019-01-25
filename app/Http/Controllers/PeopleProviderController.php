@@ -53,6 +53,9 @@ class PeopleProviderController extends Controller
   }
 
   function getServiceAdmin(){
+    /*
+    function: returns the page with all services to Admin
+    */
     if (strtoupper(auth()->user()->role)=="ADMIN"){
     $services = Service::get()->all();
     return view('admin.addservice')->with('message', 'Add Services')->with('services', $services);
