@@ -37,6 +37,10 @@ class PeopleProviderController extends Controller
 
   function postServicesData(Request $request)
   {
+    /*
+    param $request: Contains the location of user
+    function: Returns the services in the selected city near the user
+    */
     $countries = ServiceProvider::groupBy('country')->pluck('country','country');
     $services = ServiceProvider::select('services.name')->
     join('services','service_providers.service_id','=','services.id')->where('country','=',$request->country)->
