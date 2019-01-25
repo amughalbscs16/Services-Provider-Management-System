@@ -138,6 +138,9 @@ class PeopleProviderController extends Controller
   }
   function getAboutUs()
   {
+    /*
+    function: returns the about us page 
+    */
     return view('about.aboutus')->with('message',' ');
   }
 }
