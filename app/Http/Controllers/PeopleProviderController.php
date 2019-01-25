@@ -111,6 +111,13 @@ class PeopleProviderController extends Controller
   }
   function searchServiceProvider($service_id,$provider_id,$location)
   {
+    /*
+    param $service_id: The service id
+    param $provider_id: The provider id
+    param $location: Location of provided service
+    function: returns the page of service provider with maps
+    */
+
     //from provider extract user information.
     //from service id and provider id extract the data for servive and servie provider.
     //show maps and distance.
