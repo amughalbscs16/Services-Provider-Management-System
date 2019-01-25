@@ -109,6 +109,7 @@ class PeopleProviderController extends Controller
       }
       else return back()->with('message', "You are not allowed to this route");
   }
+
   function searchServiceProvider($service_id,$provider_id,$location)
   {
     /*
@@ -117,19 +118,18 @@ class PeopleProviderController extends Controller
     param $location: Location of provided service
     function: returns the page of service provider with maps
     */
-
-    //from provider extract user information.
-    //from service id and provider id extract the data for servive and servie provider.
-    //show maps and distance.
     $user_id = \App\Provider::find($provider_id)->get()->first()->user_id;
     $provider_user = \App\User::find($user_id)->get()->first();
     $service_provider = \App\ServiceProvider::join('services','services.id','=','service_providers.service_id')
     ->where('service_providers.provider_id','=',$provider_id)->where('service_providers.service_id','=',$service_id)->get()->first();
     return view('showservice')->with('provider',$provider_user)->with('serviceprovider',$service_provider)->with('location',$location)->with('message', "Service Provider Information");
   }
-  //Admin
+
   function getServiceAnalysis()
   {
+    /*
+    function: Returns the services analysis page to Admin
+    */
     if(strtoupper(auth()->user()->role)=="ADMIN"){
     $services = Service::get()->all();
     return view('admin.serviceanalysis')->with('message', 'Service Analysis')->with('services',$services);
