@@ -22,6 +22,10 @@ class PeopleProviderController extends Controller
   }
   function postUserCountry(Request $request)
   {
+    /*
+    param $request: Contains the country.
+    function: Returns the view with countrywise cities of registered services. 
+    */
     $countries = ServiceProvider::groupBy('country')->pluck('country','country');
     $services = ServiceProvider::select('services.name')->
     join('services','service_providers.service_id','=','services.id')->where('country','=',$request->country)->
