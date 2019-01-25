@@ -11,7 +11,9 @@ class PeopleProviderController extends Controller
 {
   function getHomeView()
   {
-    
+    /*
+    function: Return Home view to users
+    */
     $countries = ServiceProvider::groupBy('country')->pluck('country','country');
     if(auth()->check()){
         return view('home')->with('message','Successfully Logged in')->with('name',auth()->user()->name)->with('countries',$countries);
