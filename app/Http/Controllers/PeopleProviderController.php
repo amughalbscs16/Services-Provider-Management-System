@@ -77,7 +77,12 @@ class PeopleProviderController extends Controller
     }
     else return back()->with('message', "You are not allowed to this route");
   }
+
   function editServiceAdmin(Request $request){
+    /*
+    param $request: Updated Service Information
+    function: Updates the service information in database
+    */
     if (strtoupper(auth()->user()->role)=="ADMIN"){
     $validator = Validator::make($request->all(), [
             'id' => 'required',
