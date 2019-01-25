@@ -61,9 +61,13 @@ class PeopleProviderController extends Controller
     return view('admin.addservice')->with('message', 'Add Services')->with('services', $services);
     }
     else return back()->with('message', "You are not allowed to this route");
-
   }
+
   function postServiceAdmin(Request $request){
+    /*
+    param $request: Contains the add service information that admin requests.
+    function: Adds the service to database, which providers can provide.
+    */
     if (strtoupper(auth()->user()->role)=="ADMIN"){
     $service = new Service;
     $service->specification = $request->specification;
