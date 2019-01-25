@@ -8,11 +8,12 @@ class PeopleController extends Controller
 {
   function getUserProfile()
   {
-  
+  /*
+  function: Returns the Edit/View user profile page
+  */
     if(strtoupper(auth()->user()->role)=="USER"){
     $user = auth()->user();
     $person = People::where('user_id','=',$user->id)->first();
-    //dd($user);
     return view('user.profile')->with('user',$user)->with('person',$person)->with('message',"Edit User Profile");
     }
     else return back();
